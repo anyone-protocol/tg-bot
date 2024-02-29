@@ -1,5 +1,5 @@
 /node_modules
 
-/data/chatIds.json
+data/chatIds.json
 
-/data/fingerprints.json
+data/fingerprints.json
