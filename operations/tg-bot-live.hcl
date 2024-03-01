@@ -27,7 +27,7 @@ job "tg-bot-live" {
       }
 	  
       vault {
-        policies = ["tg-bot"]
+        policies = ["tg-bot-live"]
       }
 
       template {
