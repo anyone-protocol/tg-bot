@@ -1,6 +1,7 @@
 job "tg-bot-live" {
   datacenters = ["ator-fin"]
   type = "service"
+  namespace = "ator-network"
 
   group "tg-bot-live-group" {
     count = 1
