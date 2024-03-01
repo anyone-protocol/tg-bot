@@ -19,6 +19,8 @@ job "tg-bot-live" {
 
       config {
         image = "ghcr.io/ator-development/tg-bot:[[.deploy]]"
+        command = "node"
+        args = ["index.js"]
       }
 
       logs {
