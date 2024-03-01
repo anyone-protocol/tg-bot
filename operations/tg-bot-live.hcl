@@ -37,7 +37,7 @@ job "tg-bot-live" {
         {{with secret "kv/tg-bot/live"}}
           BOT_TOKEN="{{.Data.data.BOT_TOKEN}}"
         {{end}}
-        {{- range service "onionoo-jar-stage" }}
+        {{- range service "onionoo-war-stage" }}
           API_URL="http://{{ .Address }}:{{ .Port }}/details"
         {{- end }}
         EOH
