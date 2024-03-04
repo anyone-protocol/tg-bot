@@ -13,10 +13,9 @@ RUN npm install
 # Make port 80 available to the world outside this container
 EXPOSE 80
 
-# Define environment variable
-ENV API_URL=https://onionoo.torproject.org/details
-
-ENV BOT_TOKEN=
+# Required environment variables
+# ENV API_URL=
+# ENV BOT_TOKEN=
 
 # Run bot when the container launches
 CMD ["node", "index.js"]
