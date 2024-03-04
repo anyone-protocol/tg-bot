@@ -32,11 +32,8 @@ async function loadFromFile(fileName) {
   }
 }
 
-
-
-
 let lastrelayState = loadFromFile(DATA_STATE_FILE, {});
-let activeChats = loadFromFile(CHAT_IDS_FILE, []);
+
 
 const underline = (text) => {
   return text.split('').join('\u0332') + '\u0332';
@@ -62,6 +59,8 @@ You can also check out the general locations of the relays on our official map: 
 
   const chatId = msg.chat.id;
   const userId = msg.from.id;
+
+  let activeChats = await loadFromFile(CHAT_IDS_FILE, []);
 
   try {
     // Get the list of admins for the chat
@@ -91,6 +90,8 @@ You can also check out the general locations of the relays on our official map: 
 bot.onText(/\/stop/, async (msg) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
+
+  let activeChats = await loadFromFile(CHAT_IDS_FILE, []);
 
   try {
     // Get the list of admins for the chat
