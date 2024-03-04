@@ -14,6 +14,12 @@ job "tg-bot-live" {
       }
     }
 
+    volume "tg-bot-live" {
+      type = "host"
+      read_only = false
+      source = "tg-bot-live"
+    }
+
     task "tg-bot-live-task" {
       driver = "docker"
 
@@ -21,6 +27,12 @@ job "tg-bot-live" {
         image = "ghcr.io/ator-development/tg-bot:[[.deploy]]"
         command = "node"
         args = ["index.js"]
+      }
+
+      volume_mount {
+        volume = "tg-bot-live"
+        destination = "/usr/src/app/data"
+        read_only = false
       }
 
       logs {
