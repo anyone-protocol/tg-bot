@@ -43,14 +43,14 @@ bot.onText(/\/start/, async (msg) => {
 
   if (msg.chat.type === 'private') {
     const welcomeMessage = `
-🤖 Welcome to the ATOR Relay-Up Bot! 
-I am a Telegram bot that automatically pings your group chat whenever a new ATOR relay is registered from our network.
+🤖 Welcome to the Anyone Relay-Up Bot! 
+I am a Telegram bot that automatically pings your group chat whenever a new Anyone relay is registered from our network.
 
 Add me to a group chat and enter <code>/start</code> to begin! Want to set up a relay yourself? Follow our guide on educ.ator.io
 
 You can also check out the general locations of the relays on our official map: https://relaymap.ator.io/
 
-<a href="https://twitter.com/atorprotocol"><u>Twitter</u></a> | <a href="https://t.me/atorcommunityportal"><u>Community TG</u></a> | <a href="https://t.me/atorofficialportal"><u>Official TG</u></a>
+<a href="https://x.com/AnyoneFDN"><u>Twitter</u></a> | <a href="https://t.me/anyoneprotocol"><u>Telegram</u></a>
 `;
 
     await bot.sendMessage(msg.chat.id, welcomeMessage, { parse_mode: 'HTML' });
@@ -74,7 +74,7 @@ You can also check out the general locations of the relays on our official map: 
         saveToFile(activeChats, CHAT_IDS_FILE);
         bot.sendMessage(
           chatId,
-          "ATOR Relay-Up Bot started successfully and will notify this chat of new updates!"
+          "Anyone Relay-Up Bot started successfully and will notify this chat of new updates!"
         );
       } else {
         bot.sendMessage(chatId, "Bot is already active in this chat.");
@@ -106,7 +106,7 @@ bot.onText(/\/stop/, async (msg) => {
         saveToFile(activeChats, CHAT_IDS_FILE);
         bot.sendMessage(
           chatId,
-          "ATOR Relay-Up Bot stopped successfully and will no longer notify this chat of updates."
+          "Anyone Relay-Up Bot stopped successfully and will no longer notify this chat of updates."
         );
       } else {
         bot.sendMessage(chatId, "Bot is already inactive in this chat.");
