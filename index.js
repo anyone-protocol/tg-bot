@@ -39,7 +39,7 @@ const underline = (text) => {
   return text.split('').join('\u0332') + '\u0332';
 }
 
-bot.onText(/\/start/, async (msg) => {
+bot.onText(/^\/start@RelayUpBot$/, async (msg) => {
 
   if (msg.chat.type === 'private') {
     const welcomeMessage = `
@@ -87,7 +87,7 @@ You can also check out the general locations of the relays on our official map: 
   }
 });
 
-bot.onText(/\/stop/, async (msg) => {
+bot.onText(/^\/stop@RelayUpBot$/, async (msg) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
 
@@ -193,7 +193,7 @@ async function updateFingerprints() {
 
     // Filter relays first seen in the last 7 days and check for new fingerprints
     newData.relays.forEach(relay => {
-      if (isFirstSeenInLast7Days(relay.first_seen)) {
+      if (isFirstSeenInLast7Days(relay.first_seen) && relay.nickname !== 'MyRelayNickname') {
         totalLast7Days += 1;
         if (!existingFingerprints[relay.fingerprint]) {
           isNewData = true;
