@@ -24,7 +24,7 @@ job "tg-bot-live" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/anyone-protocol/tg-bot:[[.deploy]]"
+        image = "ghcr.io/anyone-protocol/tg-bot:[[.commit_sha]]"
         command = "node"
         args = ["index.js"]
       }
