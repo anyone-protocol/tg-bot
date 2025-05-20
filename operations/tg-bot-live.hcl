@@ -1,7 +1,7 @@
 job "tg-bot-live" {
   datacenters = ["ator-fin"]
   type = "service"
-  namespace = "ator-network"
+  namespace = "live-services"
 
   group "tg-bot-live-group" {
     count = 1
@@ -41,19 +41,32 @@ job "tg-bot-live" {
       }
 	  
       vault {
-        policies = ["tg-bot-live"]
+        role = "any1-nomad-workloads-controller"
+      }
+
+      identity {
+        name = "vault_default"
+        aud  = ["any1-infra"]
+        ttl  = "1h"
       }
 
       template {
         data = <<EOH
-        {{with secret "kv/tg-bot/live"}}
+        {{with secret "kv/live-services/tg-bot-live"}}
           BOT_TOKEN="{{.Data.data.BOT_TOKEN}}"
         {{end}}
+        EOH
+        destination = "secrets/keys.env"
+        env         = true
+      }
+
+      template {
+        data = <<EOH
         {{- range service "onionoo-war-live" }}
           API_URL="http://{{ .Address }}:{{ .Port }}/details"
         {{- end }}
         EOH
-        destination = "secrets/file.env"
+        destination = "local/config.env"
         env         = true
       }
 
