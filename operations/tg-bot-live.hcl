@@ -3,6 +3,11 @@ job "tg-bot-live" {
   type = "service"
   namespace = "live-services"
 
+  constraint {
+    attribute = "${meta.pool}"
+    value = "live-services"
+  }
+
   group "tg-bot-live-group" {
     count = 1
 
